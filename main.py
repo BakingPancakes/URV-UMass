@@ -8,8 +8,8 @@ from pathlib import Path
 
 def getAverage() -> dict[str:float]:
     means = {}
-    for file in os.listdir("PAE_files"):
-        with open("PAE_files/"+file) as f:
+    for file in os.listdir("PAE Tables for 3 recycles 200 iterations and 2 seeds/"):
+        with open("PAE Tables for 3 recycles 200 iterations and 2 seeds/"+file) as f:
             data = json.load(f)['predicted_aligned_error']
             count = 0
             sum = 0
@@ -21,5 +21,6 @@ def getAverage() -> dict[str:float]:
             means[Path(file).stem] = round(mean,3)
 
     return means
-
-print(getAverage())
+means = getAverage()
+for key in means.keys():
+    print(str(key) + ":" + str(means[key]))
